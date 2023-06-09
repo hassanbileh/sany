@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "715642753599",
+    "project_id": "pfe-sany",
+    "storage_bucket": "pfe-sany.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715642753599:android:f4804bb7f39a201cff9e8a",
+        "android_client_info": {
+          "package_name": "com.pfe.sany"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715642753599-jtvs7970am47r93uoa4v03cl2g1pdn1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxRiq0z_LCF5_aNV2tRJQV5w2PcHFkDZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715642753599-jtvs7970am47r93uoa4v03cl2g1pdn1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

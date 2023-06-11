@@ -44,39 +44,39 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDRcMfvrtQRjca2pGIcbc_9jcyZQFsRVgY',
-    appId: '1:715642753599:web:a330626e16435a2dff9e8a',
-    messagingSenderId: '715642753599',
-    projectId: 'pfe-sany',
-    authDomain: 'pfe-sany.firebaseapp.com',
-    storageBucket: 'pfe-sany.appspot.com',
+    apiKey: 'AIzaSyCIjsDTs0OLohsp6HdLTJJ84vyAnLkdOwI',
+    appId: '1:297475681366:web:46ffbf7f92993d1fa39ff7',
+    messagingSenderId: '297475681366',
+    projectId: 'my-pfe-sany',
+    authDomain: 'my-pfe-sany.firebaseapp.com',
+    storageBucket: 'my-pfe-sany.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDxRiq0z_LCF5_aNV2tRJQV5w2PcHFkDZg',
-    appId: '1:715642753599:android:f4804bb7f39a201cff9e8a',
-    messagingSenderId: '715642753599',
-    projectId: 'pfe-sany',
-    storageBucket: 'pfe-sany.appspot.com',
+    apiKey: 'AIzaSyCdIzRuAmWs3-2K7dSoYVSvCBA1AwciGwo',
+    appId: '1:297475681366:android:dbeb641df624ba9da39ff7',
+    messagingSenderId: '297475681366',
+    projectId: 'my-pfe-sany',
+    storageBucket: 'my-pfe-sany.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDZUZHjLJkltNVxDLF5Nf1s8tnSnOWS0Og',
-    appId: '1:715642753599:ios:6b2ff622126724b4ff9e8a',
-    messagingSenderId: '715642753599',
-    projectId: 'pfe-sany',
-    storageBucket: 'pfe-sany.appspot.com',
-    iosClientId: '715642753599-lc0u0745714gpvpblopsieg0m9vg1ohu.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBGDPmQvqtiPFKgEv9RIvNjx088V6QBxrk',
+    appId: '1:297475681366:ios:b5d6afc128e13ea6a39ff7',
+    messagingSenderId: '297475681366',
+    projectId: 'my-pfe-sany',
+    storageBucket: 'my-pfe-sany.appspot.com',
+    iosClientId: '297475681366-h9m9tiu0f6tbnhjcp25nul28cfkgnuc7.apps.googleusercontent.com',
     iosBundleId: 'com.pfe.sany',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDZUZHjLJkltNVxDLF5Nf1s8tnSnOWS0Og',
-    appId: '1:715642753599:ios:18906e4a269bcb52ff9e8a',
-    messagingSenderId: '715642753599',
-    projectId: 'pfe-sany',
-    storageBucket: 'pfe-sany.appspot.com',
-    iosClientId: '715642753599-fo9e9dqtcn1vt17rqoqv0nft453snsm3.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBGDPmQvqtiPFKgEv9RIvNjx088V6QBxrk',
+    appId: '1:297475681366:ios:ff8570448f9d117ba39ff7',
+    messagingSenderId: '297475681366',
+    projectId: 'my-pfe-sany',
+    storageBucket: 'my-pfe-sany.appspot.com',
+    iosClientId: '297475681366-gtem4kbn2njdoetkv2jmj4bmm7th697h.apps.googleusercontent.com',
     iosBundleId: 'com.pfe.sany.RunnerTests',
   );
 }

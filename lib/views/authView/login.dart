@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sany/constants/routes.dart';
+// import 'package:sany/enums/role_enums.dart';
+import 'package:sany/services/auth/auth_services.dart';
+import 'package:sany/services/cloud/storage/user_storage.dart';
+import 'package:sany/utilities/dialogs/error_dialog.dart';
+
+import '../../services/auth/auth_exceptions.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -10,6 +17,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  final firebaseCloudService = FirebaseCloudStorage();
 
   @override
   void initState() {
@@ -25,6 +33,55 @@ class _LoginViewState extends State<LoginView> {
     super.dispose();
   }
 
+  void _submitData() async {
+    try {
+      final email = _email.text;
+      final password = _password.text;
+      await AuthService.firebase().logIn(
+        email: email,
+        password: password,
+      );
+      final user = AuthService.firebase().currentUser;
+      if (user?.isEmailVerified ?? false) {
+        // user's email verified
+        final role = await FirebaseCloudStorage().getRole(email: email);
+        if (role == 'admin') {
+          await firebaseCloudService.updateIsEmailVerified(email: email);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil(mainAdminRoute, (route) => false);
+        } else if (role == 'compagnie') {
+          await firebaseCloudService.updateIsEmailVerified(email: email);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil(mainCompanyRoute, (route) => false);
+        } else {
+          await firebaseCloudService.updateIsEmailVerified(email: email);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil(mainClientRoute, (route) => false);
+        }
+      } else {
+        // user email is NOT veerified
+        await AuthService.firebase().sendEmailVerification();
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(verifyEmailRoute, (route) => false);
+      }
+    } on UserNotFoundAuthException {
+      await showErrorDialog(
+        context,
+        'User not found',
+      );
+    } on WrongPasswordAuthException {
+      await showErrorDialog(
+        context,
+        'Wrong password',
+      );
+    } on GenericAuthException {
+      await showErrorDialog(
+        context,
+        'Authentication error',
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +95,7 @@ class _LoginViewState extends State<LoginView> {
                   const SizedBox(
                     height: 15,
                   ),
-        
+
                   //Welcome Title
                   Text(
                     'Welcome back, you\'ve been missed.',
@@ -50,7 +107,7 @@ class _LoginViewState extends State<LoginView> {
                   const SizedBox(
                     height: 15,
                   ),
-        
+
                   //Icon
                   Icon(
                     Icons.person,
@@ -71,7 +128,6 @@ class _LoginViewState extends State<LoginView> {
                             enableSuggestions: true, //? important for the email
                             autocorrect: false, //? important for the email
                             keyboardType: TextInputType.emailAddress,
-                            onSubmitted: (_) {},
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
@@ -86,6 +142,7 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ),
                         ),
+
                         //Password textField
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -95,7 +152,8 @@ class _LoginViewState extends State<LoginView> {
                             enableSuggestions:
                                 false, // important for the password
                             autocorrect: false,
-                            onSubmitted: (_){}, // important for the password
+                            onSubmitted: (_) =>
+                                _submitData(), // important for the password
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
@@ -111,6 +169,7 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ),
                         ),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -118,12 +177,54 @@ class _LoginViewState extends State<LoginView> {
                               onPressed: () {},
                               child: Text(
                                 'Forget the password ?',
-                                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                               ),
                             )
                           ],
                         ),
-                        
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          height: 60,
+                          width: 330,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          child: OutlinedButton(
+                            child: const Text(
+                              'Login',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () => _submitData(),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('You don\'t have an account ?'),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    registerRoute, (route) => false);
+                              },
+                              child: const Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 74, 44, 156)),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

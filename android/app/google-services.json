@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "715642753599",
-    "project_id": "pfe-sany",
-    "storage_bucket": "pfe-sany.appspot.com"
+    "project_number": "297475681366",
+    "project_id": "my-pfe-sany",
+    "storage_bucket": "my-pfe-sany.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:715642753599:android:f4804bb7f39a201cff9e8a",
+        "mobilesdk_app_id": "1:297475681366:android:dbeb641df624ba9da39ff7",
         "android_client_info": {
           "package_name": "com.pfe.sany"
         }
       },
       "oauth_client": [
         {
-          "client_id": "715642753599-jtvs7970am47r93uoa4v03cl2g1pdn1m.apps.googleusercontent.com",
+          "client_id": "297475681366-3cjq5e38kom0vivntjt93eq3inr9a5k3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDxRiq0z_LCF5_aNV2tRJQV5w2PcHFkDZg"
+          "current_key": "AIzaSyCdIzRuAmWs3-2K7dSoYVSvCBA1AwciGwo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "715642753599-jtvs7970am47r93uoa4v03cl2g1pdn1m.apps.googleusercontent.com",
+              "client_id": "297475681366-3cjq5e38kom0vivntjt93eq3inr9a5k3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

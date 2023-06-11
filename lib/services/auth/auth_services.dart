@@ -1,27 +1,18 @@
 import 'package:sany/services/auth/auth_provider.dart';
 import 'package:sany/services/auth/auth_user.dart';
+import 'package:sany/services/auth/firebase_auth.dart';
 
 class AuthService implements AuthProvider {
   AuthService(this.provider);
   final AuthProvider provider;
 
-  @override
-  Future<void> initialise() => provider.initialise();
-
-  @override
-  Future<AuthUser> createUser({
-    required String email,
-    required String password,
-    required String phoneNumber,
-  }) =>
-      provider.createUser(
-        email: email,
-        password: password,
-        phoneNumber: phoneNumber,
-      );
+  factory AuthService.firebase() => AuthService(FirebaseAuthProvider());
 
   @override
   AuthUser? get currentUser => provider.currentUser;
+
+  @override
+  Future<void> initialise() => provider.initialise();
 
   @override
   Future<AuthUser> logIn({
@@ -39,5 +30,18 @@ class AuthService implements AuthProvider {
   @override
   Future<void> sendEmailVerification() => provider.sendEmailVerification();
 
-  
+
+  @override
+  Future<AuthUser> createClient({
+    required String email,
+    required String? nom,
+    required String password,
+    required int? telephone,
+  }) =>
+      provider.createClient(
+        email: email,
+        nom: nom,
+        password: password,
+        telephone: telephone,
+      );
 }
